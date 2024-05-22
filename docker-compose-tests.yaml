@@ -1,0 +1,6 @@
+services:
+  tppo-lab8-tests:
+    container_name: tppo-lab8-tests
+    build:
+      context: .
+      dockerfile: tests.Dockerfile
