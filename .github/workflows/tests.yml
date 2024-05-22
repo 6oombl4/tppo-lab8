@@ -1,0 +1,22 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  execute-tests:
+    name: Execute tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build docker image for environment
+        run: docker-compose -f docker-compose-tests.yaml build
+
+      - name: Execute tests
+        run: docker-compose -f docker-compose-tests.yaml run --rm tppo-lab8-tests /app/tests.sh
